@@ -46,6 +46,7 @@
 
         html {
             scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
         }
 
         body {
@@ -54,6 +55,10 @@
             color: var(--black);
             background-color: var(--surface);
             overflow-x: hidden;
+            max-width: 100%;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
 
         /* Utility Classes */
@@ -129,6 +134,11 @@
             transition: all var(--motion-medium) var(--ease);
             border: none;
             font-size: 1rem;
+            transform: translateZ(0);
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn-primary {
@@ -237,6 +247,7 @@
             color: var(--surface);
             font-size: 1.5rem;
             cursor: pointer;
+            z-index: 1001;
         }
 
         /* Shopping Cart Styles */
@@ -416,6 +427,7 @@
             font-weight: 600;
             cursor: pointer;
             transition: background var(--motion-medium) var(--ease);
+            min-height: 44px;
         }
 
         .checkout-btn:hover {
@@ -719,6 +731,10 @@
             font-weight: 600;
             cursor: pointer;
             transition: background var(--motion-medium) var(--ease);
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .add-to-cart:hover {
@@ -734,6 +750,10 @@
             font-weight: 600;
             cursor: pointer;
             transition: background var(--motion-medium) var(--ease);
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .view-details:hover {
@@ -1252,7 +1272,7 @@
             }
         }
 
-        /* Responsive Design */
+        /* MOBILE RESPONSIVE STYLES */
         @media (max-width: 992px) {
             .about-container,
             .contact-container {
@@ -1290,6 +1310,15 @@
         }
 
         @media (max-width: 768px) {
+            /* Header improvements */
+            .header-container {
+                padding: 0.5rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
             .mobile-menu-btn {
                 display: block;
             }
@@ -1307,6 +1336,7 @@
                 opacity: 0;
                 transition: all var(--motion-medium) var(--ease);
                 z-index: 999;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             }
 
             nav ul.active {
@@ -1314,21 +1344,270 @@
                 opacity: 1;
             }
 
-            .hero-buttons {
-                flex-direction: column;
+            nav ul li {
+                margin: 0.5rem 0;
             }
 
+            /* Hero section improvements */
+            .hero {
+                min-height: 80vh;
+                padding: 2rem 0;
+            }
+
+            .hero-content {
+                text-align: center;
+                padding: 0 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+                width: 100%;
+                margin: 0.2rem 0;
+            }
+
+            .trust-ripple {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .trust-ripple span {
+                font-size: 0.9rem;
+            }
+
+            .devices-pop {
+                position: relative;
+                justify-content: center;
+                margin-top: 2rem;
+                gap: 1rem;
+            }
+
+            .device {
+                width: 80px;
+                height: 120px;
+                font-size: 1.8rem;
+            }
+
+            /* Section padding adjustments */
+            .section {
+                padding: 2rem 0;
+            }
+
+            .container {
+                width: 95%;
+                padding: 0 0.5rem;
+            }
+
+            /* Grid layouts */
+            .highlights,
+            .services-grid,
+            .products-grid,
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .about-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            /* Cards and containers */
+            .highlight-card,
+            .service-card,
+            .product-card,
+            .blog-card {
+                margin: 0.5rem 0;
+                padding: 1rem;
+            }
+
+            .product-actions {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .product-actions button {
+                width: 100%;
+            }
+
+            /* Steps section */
+            .steps-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .steps-container::before {
+                display: none;
+            }
+
+            .step {
+                padding: 1rem;
+            }
+
+            /* Testimonials */
+            .testimonial {
+                padding: 1rem;
+                margin: 1rem 0;
+            }
+
+            /* Footer */
             .footer-container {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .footer-column {
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            /* Forms */
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form,
+            .modal-form {
+                padding: 0.5rem;
+            }
+
+            .form-control {
+                padding: 0.8rem;
+            }
+
+            /* Modal improvements */
+            .modal-content {
+                width: 95%;
+                margin: 1rem;
             }
 
             .device-options {
                 grid-template-columns: 1fr;
             }
 
+            /* Cart modal */
             .cart-modal {
                 width: 100%;
                 max-width: none;
+            }
+
+            .cart-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .cart-item-image {
+                margin: 0 auto;
+            }
+
+            /* About stats */
+            .about-stats {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .stat {
+                justify-content: center;
+            }
+
+            /* WhatsApp float */
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Extra small devices */
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+            }
+
+            .section {
+                padding: 1.5rem 0;
+            }
+
+            .container {
+                width: 98%;
+                padding: 0 0.25rem;
+            }
+
+            /* Product cards */
+            .product-content {
+                padding: 0.8rem;
+            }
+
+            .product-price {
+                font-size: 1.1rem;
+            }
+
+            /* Navigation menu */
+            nav ul {
+                top: 55px;
+            }
+
+            /* Hide complex elements on very small screens */
+            .devices-pop {
+                display: none;
+            }
+        }
+
+        /* Fix for iOS Safari */
+        @supports (-webkit-touch-callout: none) {
+            .hero {
+                min-height: -webkit-fill-available;
+            }
+        }
+
+        /* Fix for sticky hover states on mobile */
+        @media (hover: none) and (pointer: coarse) {
+            .btn:hover,
+            .add-to-cart:hover,
+            .view-details:hover,
+            .product-card:hover,
+            .service-card:hover,
+            .highlight-card:hover {
+                transform: none;
+            }
+            
+            .btn-primary:hover {
+                background: var(--brand-cta);
+                transform: none;
             }
         }
 
@@ -3127,6 +3406,56 @@
             // Mobile Menu Toggle
             mobileMenuBtn.addEventListener('click', () => {
                 navMenu.classList.toggle('active');
+                // Toggle body scroll
+                if (navMenu.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                const navMenu = document.getElementById('navMenu');
+                const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+                
+                if (!navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target) && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Close mobile menu when a link is clicked
+            const mobileNavLinks = document.querySelectorAll('nav a');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+
+            // Improve touch experience for product cards
+            const productCards = document.querySelectorAll('.product-card, .service-card');
+            productCards.forEach(card => {
+                card.style.cursor = 'pointer';
+                card.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.98)';
+                });
+                
+                card.addEventListener('touchend', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+
+            // Better form experience on mobile
+            const formInputs = document.querySelectorAll('input, textarea, select');
+            formInputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    // Scroll to input on focus for better UX
+                    setTimeout(() => {
+                        this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 300);
+                });
             });
             
             // Header Scroll Effect
@@ -3265,6 +3594,15 @@
                 el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
                 observer.observe(el);
             });
+
+            // Viewport units fix for mobile
+            function setViewportHeight() {
+                let vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
+            }
+
+            setViewportHeight();
+            window.addEventListener('resize', setViewportHeight);
         });
 
         // Add CSS for notification animation
