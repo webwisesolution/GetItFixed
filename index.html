@@ -239,6 +239,201 @@
             cursor: pointer;
         }
 
+        /* Shopping Cart Styles */
+        .cart-icon {
+            position: relative;
+            color: var(--surface);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color var(--motion-fast) var(--ease);
+        }
+
+        .cart-icon:hover {
+            color: var(--brand-logo);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--brand-logo);
+            color: var(--surface);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background: var(--surface);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 2000;
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: transform var(--motion-medium) var(--ease);
+        }
+
+        .cart-modal.active {
+            display: block;
+            transform: translateX(0);
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-md);
+            border-bottom: 1px solid var(--bg-soft);
+        }
+
+        .cart-header h2 {
+            margin: 0;
+            color: var(--brand-logo);
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--muted);
+            transition: color var(--motion-fast) var(--ease);
+        }
+
+        .close-cart:hover {
+            color: var(--danger);
+        }
+
+        .cart-items {
+            padding: var(--space-md);
+        }
+
+        .cart-item {
+            display: flex;
+            gap: var(--space-sm);
+            padding: var(--space-sm) 0;
+            border-bottom: 1px solid var(--bg-soft);
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            background: var(--bg-soft);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-item-image img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+        }
+
+        .cart-item-price {
+            color: var(--brand-logo);
+            font-weight: 700;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            margin-top: var(--space-xs);
+        }
+
+        .quantity-btn {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--bg-soft);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--motion-fast) var(--ease);
+        }
+
+        .quantity-btn:hover {
+            background: var(--brand-logo);
+            color: var(--surface);
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: var(--danger);
+            cursor: pointer;
+            margin-top: var(--space-xs);
+            font-size: 0.9rem;
+        }
+
+        .cart-footer {
+            padding: var(--space-md);
+            border-top: 1px solid var(--bg-soft);
+            position: sticky;
+            bottom: 0;
+            background: var(--surface);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: var(--space-md);
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: var(--space-sm);
+            background: var(--brand-logo);
+            color: var(--surface);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background var(--motion-medium) var(--ease);
+        }
+
+        .checkout-btn:hover {
+            background: var(--brand-cta);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: var(--space-lg);
+            color: var(--muted);
+        }
+
+        .empty-cart i {
+            font-size: 3rem;
+            margin-bottom: var(--space-sm);
+            color: var(--mid-gray);
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -500,6 +695,50 @@
             font-size: 0.8rem;
             font-weight: 600;
             margin-bottom: var(--space-sm);
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--brand-logo);
+            margin: var(--space-sm) 0;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: var(--space-xs);
+        }
+
+        .add-to-cart {
+            flex: 1;
+            background: var(--brand-logo);
+            color: var(--surface);
+            border: none;
+            border-radius: 6px;
+            padding: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background var(--motion-medium) var(--ease);
+        }
+
+        .add-to-cart:hover {
+            background: var(--brand-cta);
+        }
+
+        .view-details {
+            background: var(--bg-soft);
+            color: var(--black);
+            border: none;
+            border-radius: 6px;
+            padding: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background var(--motion-medium) var(--ease);
+        }
+
+        .view-details:hover {
+            background: var(--mid-gray);
+            color: var(--surface);
         }
 
         /* Steps Section */
@@ -1086,6 +1325,11 @@
             .device-options {
                 grid-template-columns: 1fr;
             }
+
+            .cart-modal {
+                width: 100%;
+                max-width: none;
+            }
         }
 
         /* Reduced Motion */
@@ -1122,10 +1366,38 @@
                     <li><a href="#" data-page="blog">Blog</a></li>
                     <li><a href="#" data-page="contact">Contact</a></li>
                     <li><a href="#" class="btn btn-primary" id="bookRepairBtn">Book Repair</a></li>
+                    <li>
+                        <div class="cart-icon" id="cartIcon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count" id="cartCount">0</span>
+                        </div>
+                    </li>
                 </ul>
             </nav>
         </div>
     </header>
+
+    <!-- Shopping Cart -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be dynamically inserted here -->
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">KSh 0</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </div>
 
     <!-- Home Page -->
     <div id="home" class="page active">
@@ -1172,7 +1444,7 @@
                     </div>
                     <div class="highlight-card">
                         <div class="highlight-icon">
-                            <img src="https://cdn-icons-png.flaticon.com/512/9296/9296856.png" alt="Warranty">
+                            <img src="images/3d,shield,checklist,element,checklist….jfif" alt="Warranty">
                         </div>
                         <h3>Warranty Guaranteed</h3>
                         <p>Every repair comes with peace of mind.</p>
@@ -1314,8 +1586,11 @@
                             <span class="product-tag">Like New</span>
                             <h3>iPhone 12 Pro</h3>
                             <p>Refurbished to perfection with 6-month warranty</p>
-                            <p class="text-orange" style="font-weight: 700; font-size: 1.2rem;">KSh 45,000</p>
-                            <a href="#" class="btn btn-primary" style="width: 100%;">Buy Now</a>
+                            <div class="product-price">KSh 45,000</div>
+                            <div class="product-actions">
+                                <button class="add-to-cart" data-id="1" data-name="iPhone 12 Pro" data-price="45000" data-image="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80">Add to Cart</button>
+                                <button class="view-details">Details</button>
+                            </div>
                         </div>
                     </div>
                     <div class="product-card">
@@ -1326,8 +1601,11 @@
                             <span class="product-tag">Hot Deal</span>
                             <h3>Dell XPS 13</h3>
                             <p>Like-new condition with upgraded SSD</p>
-                            <p class="text-orange" style="font-weight: 700; font-size: 1.2rem;">KSh 65,000</p>
-                            <a href="#" class="btn btn-primary" style="width: 100%;">Buy Now</a>
+                            <div class="product-price">KSh 65,000</div>
+                            <div class="product-actions">
+                                <button class="add-to-cart" data-id="2" data-name="Dell XPS 13" data-price="65000" data-image="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80">Add to Cart</button>
+                                <button class="view-details">Details</button>
+                            </div>
                         </div>
                     </div>
                     <div class="product-card">
@@ -1338,8 +1616,11 @@
                             <span class="product-tag">Limited Stock</span>
                             <h3>Samsung Galaxy S21</h3>
                             <p>Fully refurbished with new battery</p>
-                            <p class="text-orange" style="font-weight: 700; font-size: 1.2rem;">KSh 32,000</p>
-                            <a href="#" class="btn btn-primary" style="width: 100%;">Buy Now</a>
+                            <div class="product-price">KSh 32,000</div>
+                            <div class="product-actions">
+                                <button class="add-to-cart" data-id="3" data-name="Samsung Galaxy S21" data-price="32000" data-image="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80">Add to Cart</button>
+                                <button class="view-details">Details</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1409,7 +1690,7 @@
                         <p>"I dropped my iPhone in water and thought it was over. Allan's team revived it in just 2 hours. Absolute lifesavers."</p>
                         <div class="testimonial-author">
                             <div class="author-avatar">
-                                <img src="images/#chatgpt #professionalphoto.jfif" alt="Brenda M.">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Brenda M.">
                             </div>
                             <div>
                                 <h4>Brenda Maitha.</h4>
@@ -1428,7 +1709,7 @@
                         <p>"My laptop was running so slow I could barely work. GetItFixed not only fixed the performance issues but also recovered all my important files. Highly recommended!"</p>
                         <div class="testimonial-author">
                             <div class="author-avatar">
-                                <img src="images/#BlueVibes #MidnightMood   #DarkBlueEnergy….jfif" alt="David K.">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="David K.">
                             </div>
                             <div>
                                 <h4>David Kamau</h4>
@@ -1666,7 +1947,7 @@
                     </div>
                     <div class="highlight-card">
                         <div class="highlight-icon">
-                            <img src="images/3d,shield,checklist,element,checklist….jfif" alt="Warranty Protected">
+                            <img src="https://cdn-icons-png.flaticon.com/512/9296/9296856.png" alt="Warranty Protected">
                         </div>
                         <h3>Warranty Protected</h3>
                         <p>All repairs come with a warranty for your peace of mind and satisfaction guarantee.</p>
@@ -1730,9 +2011,12 @@
                                 <p><i class="fas fa-battery-three-quarters"></i> 90% Battery Health</p>
                                 <p><i class="fas fa-shield-alt"></i> 6-Month Warranty</p>
                             </div>
-                            <p class="text-orange" style="font-weight: 700; font-size: 1.2rem;">KSh 45,000</p>
+                            <div class="product-price">KSh 45,000</div>
                             <p><s>KSh 65,000</s> <span style="color: var(--success);">30% off</span></p>
-                            <a href="#" class="btn btn-primary" style="width: 100%;">Buy Now</a>
+                            <div class="product-actions">
+                                <button class="add-to-cart" data-id="1" data-name="iPhone 12 Pro" data-price="45000" data-image="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80">Add to Cart</button>
+                                <button class="view-details">Details</button>
+                            </div>
                         </div>
                     </div>
                     
@@ -1749,9 +2033,12 @@
                                 <p><i class="fas fa-memory"></i> 8GB RAM / 256GB SSD</p>
                                 <p><i class="fas fa-shield-alt"></i> 12-Month Warranty</p>
                             </div>
-                            <p class="text-orange" style="font-weight: 700; font-size: 1.2rem;">KSh 65,000</p>
+                            <div class="product-price">KSh 65,000</div>
                             <p><s>KSh 85,000</s> <span style="color: var(--success);">23% off</span></p>
-                            <a href="#" class="btn btn-primary" style="width: 100%;">Buy Now</a>
+                            <div class="product-actions">
+                                <button class="add-to-cart" data-id="2" data-name="Dell XPS 13" data-price="65000" data-image="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80">Add to Cart</button>
+                                <button class="view-details">Details</button>
+                            </div>
                         </div>
                     </div>
                     
@@ -1768,9 +2055,12 @@
                                 <p><i class="fas fa-battery-full"></i> New Battery</p>
                                 <p><i class="fas fa-shield-alt"></i> 6-Month Warranty</p>
                             </div>
-                            <p class="text-orange" style="font-weight: 700; font-size: 1.2rem;">KSh 32,000</p>
+                            <div class="product-price">KSh 32,000</div>
                             <p><s>KSh 45,000</s> <span style="color: var(--success);">29% off</span></p>
-                            <a href="#" class="btn btn-primary" style="width: 100%;">Buy Now</a>
+                            <div class="product-actions">
+                                <button class="add-to-cart" data-id="3" data-name="Samsung Galaxy S21" data-price="32000" data-image="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80">Add to Cart</button>
+                                <button class="view-details">Details</button>
+                            </div>
                         </div>
                     </div>
                     
@@ -1787,9 +2077,12 @@
                                 <p><i class="fas fa-tablet-alt"></i> 10.9" Display</p>
                                 <p><i class="fas fa-shield-alt"></i> 6-Month Warranty</p>
                             </div>
-                            <p class="text-orange" style="font-weight: 700; font-size: 1.2rem;">KSh 38,000</p>
+                            <div class="product-price">KSh 38,000</div>
                             <p><s>KSh 52,000</s> <span style="color: var(--success);">27% off</span></p>
-                            <a href="#" class="btn btn-primary" style="width: 100%;">Buy Now</a>
+                            <div class="product-actions">
+                                <button class="add-to-cart" data-id="4" data-name="iPad Air 4" data-price="38000" data-image="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80">Add to Cart</button>
+                                <button class="view-details">Details</button>
+                            </div>
                         </div>
                     </div>
                     
@@ -1806,9 +2099,12 @@
                                 <p><i class="fas fa-memory"></i> 8GB RAM / 512GB SSD</p>
                                 <p><i class="fas fa-shield-alt"></i> 12-Month Warranty</p>
                             </div>
-                            <p class="text-orange" style="font-weight: 700; font-size: 1.2rem;">KSh 42,000</p>
+                            <div class="product-price">KSh 42,000</div>
                             <p><s>KSh 58,000</s> <span style="color: var(--success);">28% off</span></p>
-                            <a href="#" class="btn btn-primary" style="width: 100%;">Buy Now</a>
+                            <div class="product-actions">
+                                <button class="add-to-cart" data-id="5" data-name="HP Pavilion 15" data-price="42000" data-image="https://images.unsplash.com/photo-1587614382346-4ec70e388b28?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80">Add to Cart</button>
+                                <button class="view-details">Details</button>
+                            </div>
                         </div>
                     </div>
                     
@@ -1825,9 +2121,56 @@
                                 <p><i class="fas fa-camera"></i> 48MP Quad Camera</p>
                                 <p><i class="fas fa-shield-alt"></i> 6-Month Warranty</p>
                             </div>
-                            <p class="text-orange" style="font-weight: 700; font-size: 1.2rem;">KSh 15,000</p>
+                            <div class="product-price">KSh 15,000</div>
                             <p><s>KSh 22,000</s> <span style="color: var(--success);">32% off</span></p>
-                            <a href="#" class="btn btn-primary" style="width: 100%;">Buy Now</a>
+                            <div class="product-actions">
+                                <button class="add-to-cart" data-id="6" data-name="Tecno Camon 17" data-price="15000" data-image="https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80">Add to Cart</button>
+                                <button class="view-details">Details</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="MacBook Pro 13">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-tag">Premium</span>
+                            <h3>MacBook Pro 13</h3>
+                            <p>M1 Chip, 8GB RAM, 256GB SSD, Excellent condition</p>
+                            <div class="product-specs">
+                                <p><i class="fas fa-microchip"></i> Apple M1 Chip</p>
+                                <p><i class="fas fa-memory"></i> 8GB RAM / 256GB SSD</p>
+                                <p><i class="fas fa-shield-alt"></i> 12-Month Warranty</p>
+                            </div>
+                            <div class="product-price">KSh 85,000</div>
+                            <p><s>KSh 110,000</s> <span style="color: var(--success);">23% off</span></p>
+                            <div class="product-actions">
+                                <button class="add-to-cart" data-id="7" data-name="MacBook Pro 13" data-price="85000" data-image="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80">Add to Cart</button>
+                                <button class="view-details">Details</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Samsung Galaxy Tab S7">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-tag">Tablet</span>
+                            <h3>Samsung Galaxy Tab S7</h3>
+                            <p>128GB, 6GB RAM, S Pen included, Like-new condition</p>
+                            <div class="product-specs">
+                                <p><i class="fas fa-memory"></i> 128GB Storage / 6GB RAM</p>
+                                <p><i class="fas fa-tablet-alt"></i> 11" Display</p>
+                                <p><i class="fas fa-shield-alt"></i> 6-Month Warranty</p>
+                            </div>
+                            <div class="product-price">KSh 35,000</div>
+                            <p><s>KSh 48,000</s> <span style="color: var(--success);">27% off</span></p>
+                            <div class="product-actions">
+                                <button class="add-to-cart" data-id="8" data-name="Samsung Galaxy Tab S7" data-price="35000" data-image="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80">Add to Cart</button>
+                                <button class="view-details">Details</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1847,7 +2190,7 @@
                     </div>
                     <div class="highlight-card">
                         <div class="highlight-icon">
-                            <img src="images/3d,shield,checklist,element,checklist….jfif" alt="Warranty Included">
+                            <img src="https://cdn-icons-png.flaticon.com/512/9296/9296856.png" alt="Warranty Included">
                         </div>
                         <h3>Warranty Included</h3>
                         <p>All devices come with 6-12 month warranty for complete peace of mind.</p>
@@ -2521,11 +2864,199 @@
     </footer>
 
     <!-- WhatsApp Float -->
-    <a href="https://wa.me/254700123456" class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/254728364858" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <script>
+        // Shopping Cart Functionality
+        let cart = [];
+        const cartIcon = document.getElementById('cartIcon');
+        const cartModal = document.getElementById('cartModal');
+        const closeCart = document.getElementById('closeCart');
+        const cartItems = document.getElementById('cartItems');
+        const cartCount = document.getElementById('cartCount');
+        const cartTotal = document.getElementById('cartTotal');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+
+        // Load cart from localStorage
+        function loadCart() {
+            const savedCart = localStorage.getItem('getitfixed_cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCartDisplay();
+            }
+        }
+
+        // Save cart to localStorage
+        function saveCart() {
+            localStorage.setItem('getitfixed_cart', JSON.stringify(cart));
+        }
+
+        // Add item to cart
+        function addToCart(product) {
+            const existingItem = cart.find(item => item.id === product.id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    quantity: 1
+                });
+            }
+            
+            saveCart();
+            updateCartDisplay();
+            showCartNotification(product.name);
+        }
+
+        // Remove item from cart
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            saveCart();
+            updateCartDisplay();
+        }
+
+        // Update item quantity
+        function updateQuantity(productId, newQuantity) {
+            if (newQuantity <= 0) {
+                removeFromCart(productId);
+                return;
+            }
+            
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity = newQuantity;
+                saveCart();
+                updateCartDisplay();
+            }
+        }
+
+        // Update cart display
+        function updateCartDisplay() {
+            // Update cart count
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Update cart items
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Your cart is empty</p>
+                    </div>
+                `;
+                cartTotal.textContent = 'KSh 0';
+                checkoutBtn.disabled = true;
+                checkoutBtn.style.opacity = '0.6';
+                return;
+            }
+            
+            checkoutBtn.disabled = false;
+            checkoutBtn.style.opacity = '1';
+            
+            let itemsHTML = '';
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                itemsHTML += `
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">KSh ${item.price.toLocaleString()}</div>
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">-</button>
+                                <span>${item.quantity}</span>
+                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
+                            </div>
+                            <button class="remove-item" onclick="removeFromCart(${item.id})">Remove</button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            cartItems.innerHTML = itemsHTML;
+            cartTotal.textContent = `KSh ${total.toLocaleString()}`;
+        }
+
+        // Show cart notification
+        function showCartNotification(productName) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: var(--success);
+                color: white;
+                padding: 12px 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                z-index: 3000;
+                animation: slideIn 0.3s ease;
+            `;
+            notification.innerHTML = `
+                <i class="fas fa-check-circle" style="margin-right: 8px;"></i>
+                ${productName} added to cart!
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Initialize cart
+        loadCart();
+
+        // Event Listeners
+        cartIcon.addEventListener('click', () => {
+            cartModal.classList.add('active');
+        });
+
+        closeCart.addEventListener('click', () => {
+            cartModal.classList.remove('active');
+        });
+
+        // Add to cart buttons
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('add-to-cart')) {
+                const product = {
+                    id: parseInt(e.target.dataset.id),
+                    name: e.target.dataset.name,
+                    price: parseInt(e.target.dataset.price),
+                    image: e.target.dataset.image
+                };
+                addToCart(product);
+            }
+        });
+
+        // Checkout button
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length > 0) {
+                alert('Thank you for your order! We will contact you shortly to complete your purchase.');
+                cart = [];
+                saveCart();
+                updateCartDisplay();
+                cartModal.classList.remove('active');
+            }
+        });
+
         // Page Navigation
         document.addEventListener('DOMContentLoaded', function() {
             const pages = document.querySelectorAll('.page');
@@ -2735,6 +3266,20 @@
                 observer.observe(el);
             });
         });
+
+        // Add CSS for notification animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
