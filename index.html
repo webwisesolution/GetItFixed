@@ -1,0 +1,2740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GetItFixed - Device Repair Experts in Nairobi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Brand Colors */
+            --brand-logo: #FF7A00;
+            --brand-cta: #CC4A00;
+            --brand-cta-hover: #B24A00;
+            --brand-cta-active: #992F00;
+            --black: #0B0B0B;
+            --charcoal: #1F1F1F;
+            --muted: #6B7280;
+            --mid-gray: #9CA3AF;
+            --surface: #FFFFFF;
+            --bg-soft: #F7F7F8;
+            --success: #16A34A;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --accent-blue: #2563EB;
+
+            /* Motion Tokens */
+            --motion-fast: 120ms;
+            --motion-medium: 240ms;
+            --motion-slow: 420ms;
+            --ease: cubic-bezier(.22,.9,.3,1);
+            --ease-soft: cubic-bezier(.2,.8,.2,1);
+
+            /* Spacing */
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 2rem;
+            --space-lg: 4rem;
+            --space-xl: 8rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            background-color: var(--surface);
+            overflow-x: hidden;
+        }
+
+        /* Utility Classes */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-sm);
+        }
+
+        .section {
+            padding: var(--space-lg) 0;
+        }
+
+        .section-dark {
+            background-color: var(--charcoal);
+            color: var(--surface);
+        }
+
+        .section-light {
+            background-color: var(--bg-soft);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-orange {
+            color: var(--brand-logo);
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            line-height: 1.2;
+            margin-bottom: var(--space-sm);
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+        }
+
+        p {
+            margin-bottom: var(--space-sm);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 1.8rem;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--motion-medium) var(--ease);
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--brand-cta);
+            color: var(--surface);
+            box-shadow: 0 8px 20px rgba(204, 74, 0, 0.14);
+        }
+
+        .btn-primary:hover {
+            background: var(--brand-cta-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(204, 74, 0, 0.2);
+        }
+
+        .btn-primary:active {
+            background: var(--brand-cta-active);
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--brand-logo);
+            color: var(--black);
+            background: transparent;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 122, 0, 0.06);
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(11, 11, 11, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: var(--space-sm) 0;
+            transition: all var(--motion-medium) var(--ease);
+        }
+
+        header.scrolled {
+            padding: var(--space-xs) 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            color: var(--surface);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo-icon {
+            color: var(--brand-logo);
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: var(--space-md);
+        }
+
+        nav a {
+            color: var(--surface);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color var(--motion-fast) var(--ease);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--brand-logo);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--brand-logo);
+            transition: width var(--motion-medium) var(--ease);
+        }
+
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--surface);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(11, 11, 11, 0.8), rgba(255, 122, 0, 0.1)), 
+                        url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            color: var(--surface);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            margin-bottom: var(--space-md);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp var(--motion-slow) var(--ease) forwards;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: var(--space-md);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp var(--motion-slow) var(--ease) 0.2s forwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp var(--motion-slow) var(--ease) 0.4s forwards;
+        }
+
+        .trust-ripple {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp var(--motion-slow) var(--ease) 0.6s forwards;
+        }
+
+        .trust-ripple span {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .devices-pop {
+            position: absolute;
+            right: 10%;
+            bottom: 20%;
+            display: flex;
+            gap: var(--space-md);
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            animation: popIn var(--motion-slow) var(--ease) 0.8s forwards;
+        }
+
+        .device {
+            width: 120px;
+            height: 180px;
+            background: var(--surface);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--charcoal);
+            transform: translateY(0);
+            transition: transform var(--motion-medium) var(--ease);
+        }
+
+        .device:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Highlights Section */
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+
+        .highlight-card {
+            background: var(--surface);
+            padding: var(--space-md);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: all var(--motion-medium) var(--ease);
+            border: 1px solid transparent;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+            border-color: var(--brand-logo);
+        }
+
+        .highlight-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--space-sm);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 122, 0, 0.1);
+        }
+
+        .highlight-icon img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        /* About Section */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-lg);
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform var(--motion-slow) var(--ease);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-md) 0;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            color: var(--brand-logo);
+            font-weight: 600;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+
+        .service-card {
+            background: var(--surface);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all var(--motion-medium) var(--ease);
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--space-sm);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 122, 0, 0.1);
+        }
+
+        .service-icon img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .service-content {
+            padding: var(--space-md);
+        }
+
+        /* Products Section */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+
+        .product-card {
+            background: var(--surface);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all var(--motion-medium) var(--ease);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            height: 200px;
+            background-color: var(--bg-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image img {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+        }
+
+        .product-content {
+            padding: var(--space-md);
+        }
+
+        .product-tag {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            background: var(--brand-logo);
+            color: var(--black);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+        }
+
+        /* Steps Section */
+        .steps-container {
+            display: flex;
+            justify-content: space-between;
+            margin: var(--space-lg) 0;
+            position: relative;
+        }
+
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--mid-gray);
+            z-index: 1;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            padding: 0 var(--space-sm);
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--brand-logo);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-sm);
+            color: var(--surface);
+            box-shadow: 0 4px 12px rgba(255, 122, 0, 0.3);
+        }
+
+        .step-icon img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        /* Testimonials */
+        .testimonials-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial {
+            background: var(--surface);
+            padding: var(--space-md);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin: var(--space-md) 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all var(--motion-medium) var(--ease);
+        }
+
+        .testimonial.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .testimonial-rating {
+            color: var(--warning);
+            margin-bottom: var(--space-sm);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-top: var(--space-sm);
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--bg-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Brands Section */
+        .brands-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: var(--space-lg);
+            margin: var(--space-lg) 0;
+        }
+
+        .brand-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--muted);
+            transition: all var(--motion-medium) var(--ease);
+        }
+
+        .brand-logo:hover {
+            color: var(--brand-logo);
+            transform: scale(1.1);
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: var(--space-sm);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            background: var(--surface);
+            padding: var(--space-md);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: background var(--motion-fast) var(--ease);
+        }
+
+        .faq-question:hover {
+            background: var(--bg-soft);
+        }
+
+        .faq-answer {
+            background: var(--bg-soft);
+            padding: 0 var(--space-md);
+            max-height: 0;
+            overflow: hidden;
+            transition: all var(--motion-medium) var(--ease);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: var(--space-md);
+            max-height: 500px;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-lg);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--brand-logo);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--surface);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xs);
+        }
+
+        .form-group label {
+            font-weight: 500;
+        }
+
+        .form-control {
+            padding: 0.75rem;
+            border: 1px solid var(--mid-gray);
+            border-radius: 8px;
+            font-family: inherit;
+            transition: all var(--motion-fast) var(--ease);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--brand-logo);
+            box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.1);
+        }
+
+        /* Blog Section */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+
+        .blog-card {
+            background: var(--surface);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all var(--motion-medium) var(--ease);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-image {
+            height: 200px;
+            background-color: var(--bg-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: var(--space-md);
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-sm);
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .blog-tag {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            background: var(--brand-logo);
+            color: var(--black);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: var(--surface);
+            padding: var(--space-lg) 0 var(--space-md);
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-lg);
+        }
+
+        .footer-column h3 {
+            color: var(--brand-logo);
+            margin-bottom: var(--space-md);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: var(--space-xs);
+        }
+
+        .footer-links a {
+            color: var(--surface);
+            text-decoration: none;
+            transition: color var(--motion-fast) var(--ease);
+        }
+
+        .footer-links a:hover {
+            color: var(--brand-logo);
+        }
+
+        .social-links {
+            display: flex;
+            gap: var(--space-sm);
+            margin-top: var(--space-sm);
+        }
+
+        .social-link {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--surface);
+            text-decoration: none;
+            transition: all var(--motion-fast) var(--ease);
+        }
+
+        .social-link:hover {
+            background: var(--brand-logo);
+            transform: translateY(-2px);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: var(--space-lg);
+            padding-top: var(--space-md);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--mid-gray);
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--surface);
+            font-size: 1.8rem;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            animation: pulse 4s infinite;
+            text-decoration: none;
+            transition: transform var(--motion-medium) var(--ease);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--surface);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .modal-header {
+            padding: var(--space-md);
+            border-bottom: 1px solid var(--bg-soft);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            color: var(--brand-logo);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--muted);
+            transition: color 0.2s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--danger);
+        }
+
+        .modal-body {
+            padding: var(--space-md);
+        }
+
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-sm);
+        }
+
+        .device-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-sm) 0;
+        }
+
+        .device-option {
+            text-align: center;
+            padding: var(--space-sm);
+            border: 2px solid var(--bg-soft);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .device-option:hover, .device-option.selected {
+            border-color: var(--brand-logo);
+            background-color: rgba(255, 122, 0, 0.05);
+        }
+
+        .device-option img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            margin-bottom: var(--space-xs);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes popIn {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps-container {
+                flex-direction: column;
+                gap: var(--space-md);
+            }
+
+            .steps-container::before {
+                display: none;
+            }
+
+            .devices-pop {
+                position: relative;
+                right: auto;
+                bottom: auto;
+                justify-content: center;
+                margin-top: var(--space-md);
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .device-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--charcoal);
+                flex-direction: column;
+                padding: var(--space-md);
+                gap: var(--space-md);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all var(--motion-medium) var(--ease);
+                z-index: 999;
+            }
+
+            nav ul.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .device-options {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .whatsapp-float {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="#" class="logo" data-page="home">
+                <i class="fas fa-tools logo-icon"></i>
+                GetItFixed
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#" data-page="home" class="active">Home</a></li>
+                    <li><a href="#" data-page="services">Services</a></li>
+                    <li><a href="#" data-page="shop">Shop</a></li>
+                    <li><a href="#" data-page="about">About</a></li>
+                    <li><a href="#" data-page="blog">Blog</a></li>
+                    <li><a href="#" data-page="contact">Contact</a></li>
+                    <li><a href="#" class="btn btn-primary" id="bookRepairBtn">Book Repair</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Cracked Screen? Dead Battery? Don't Panic – We Bring Devices Back to Life.</h1>
+                    <p>Fast, trusted phone & laptop repairs at Kimathi House, Nairobi – with warranty protection.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary" id="heroBookRepairBtn">Book My Repair Now</a>
+                        <a href="#" class="btn btn-secondary" data-page="shop">Shop Refurbished Devices</a>
+                    </div>
+                    <div class="trust-ripple">
+                        <span><i class="fas fa-check-circle" style="color: var(--success);"></i> Trusted by 1,000+ Nairobi customers</span>
+                        <span><i class="fas fa-bolt" style="color: var(--brand-logo);"></i> Same-Day Repairs</span>
+                        <span><i class="fas fa-certificate" style="color: var(--accent-blue);"></i> Certified Tech Experts</span>
+                    </div>
+                </div>
+                <div class="devices-pop">
+                    <div class="device">
+                        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Smartphone">
+                    </div>
+                    <div class="device">
+                        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Laptop">
+                    </div>
+                    <div class="device">
+                        <img src="https://images.unsplash.com/photo-1561154464-82e9adf32764?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Tablet">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Highlights Section -->
+        <section class="section section-light">
+            <div class="container">
+                <div class="highlights">
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2972/2972185.png" alt="Fast Repair">
+                        </div>
+                        <h3>Same-Day Repairs</h3>
+                        <p>Get your phone fixed before your coffee gets cold.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/9296/9296856.png" alt="Warranty">
+                        </div>
+                        <h3>Warranty Guaranteed</h3>
+                        <p>Every repair comes with peace of mind.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png" alt="Certified Technician">
+                        </div>
+                        <h3>Certified Technicians</h3>
+                        <p>Trained, experienced & brand-specific experts.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3097/3097136.png" alt="Delivery">
+                        </div>
+                        <h3>Pickup & Delivery</h3>
+                        <p>Can't come? We'll collect & return your device.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section">
+            <div class="container">
+                <div class="about-container">
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Founder Allan at workshop">
+                    </div>
+                    <div class="about-content">
+                        <h2>"Fixing devices is not just a job – it's a rescue mission."</h2>
+                        <p>Founded by Allan, a tech enthusiast obsessed with performance and perfection, GetItFixed was built on a single belief: no device deserves to be abandoned just because it broke.</p>
+                        <p>From our repair hub at Kimathi House, we breathe life back into smartphones, laptops, and tablets – one successful fix at a time.</p>
+                        <div class="about-stats">
+                            <div class="stat"><i class="fas fa-calendar-alt"></i> 5+ Years Experience</div>
+                            <div class="stat"><i class="fas fa-mobile-alt"></i> 1,000+ Devices Saved</div>
+                            <div class="stat"><i class="fas fa-tags"></i> All Major Brands Covered</div>
+                            <div class="stat"><i class="fas fa-dollar-sign"></i> Transparent Pricing</div>
+                        </div>
+                        <a href="#" class="btn btn-primary" data-page="about">Meet Our Repair Philosophy</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="section section-light">
+            <div class="container">
+                <h2 class="text-center">Whatever the Problem, We've Fixed It Before.</h2>
+                <p class="text-center">Choose your device category to explore repair options.</p>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-content">
+                            <div class="service-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/15/15874.png" alt="Phone Repair">
+                            </div>
+                            <h3>Phone Repairs</h3>
+                            <p>Screens, Batteries & More</p>
+                            <p>Crack? Freeze? We fix all issues.</p>
+                            <a href="#" class="btn btn-primary get-quote-btn" data-service="Phone Repairs">Get Quote</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-content">
+                            <div class="service-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Laptop Repair">
+                            </div>
+                            <h3>Laptop Repairs</h3>
+                            <p>Performance & Hardware</p>
+                            <p>From slow to lightning-fast again.</p>
+                            <a href="#" class="btn btn-primary get-quote-btn" data-service="Laptop Repairs">Get Quote</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-content">
+                            <div class="service-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/3108/3108773.png" alt="Battery Replacement">
+                            </div>
+                            <h3>Battery Replacement</h3>
+                            <p>Power That Lasts</p>
+                            <p>Say goodbye to 1-hour battery life.</p>
+                            <a href="#" class="btn btn-primary get-quote-btn" data-service="Battery Replacement">Get Quote</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-content">
+                            <div class="service-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2989/2989988.png" alt="Camera Repair">
+                            </div>
+                            <h3>Camera & Speaker Fix</h3>
+                            <p>See & Hear Clearly Again</p>
+                            <p>Capture moments in HD again.</p>
+                            <a href="#" class="btn btn-primary get-quote-btn" data-service="Camera & Speaker Fix">Get Quote</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-content">
+                            <div class="service-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2721/2721620.png" alt="Software Recovery">
+                            </div>
+                            <h3>Software Recovery</h3>
+                            <p>Virus & Data Issues</p>
+                            <p>Restore your device to perfect health.</p>
+                            <a href="#" class="btn btn-primary get-quote-btn" data-service="Software Recovery">Get Quote</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-content">
+                            <div class="service-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2311/2311905.png" alt="Diagnosis">
+                            </div>
+                            <h3>Free Diagnosis</h3>
+                            <p>Not Sure What's Wrong?</p>
+                            <p>Bring it in. We'll find out.</p>
+                            <a href="#" class="btn btn-primary get-quote-btn" data-service="Free Diagnosis">Get Quote</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <a href="#" class="btn btn-primary" data-page="services">Explore Full Repair Menu</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center">Want Something As Good As New – Without Paying Like It's New?</h2>
+                <p class="text-center">Shop our certified-refurbished phones & laptops – tested, optimized & warranty-backed.</p>
+                
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="iPhone 12 Pro">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-tag">Like New</span>
+                            <h3>iPhone 12 Pro</h3>
+                            <p>Refurbished to perfection with 6-month warranty</p>
+                            <p class="text-orange" style="font-weight: 700; font-size: 1.2rem;">KSh 45,000</p>
+                            <a href="#" class="btn btn-primary" style="width: 100%;">Buy Now</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Dell XPS 13">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-tag">Hot Deal</span>
+                            <h3>Dell XPS 13</h3>
+                            <p>Like-new condition with upgraded SSD</p>
+                            <p class="text-orange" style="font-weight: 700; font-size: 1.2rem;">KSh 65,000</p>
+                            <a href="#" class="btn btn-primary" style="width: 100%;">Buy Now</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Samsung Galaxy S21">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-tag">Limited Stock</span>
+                            <h3>Samsung Galaxy S21</h3>
+                            <p>Fully refurbished with new battery</p>
+                            <p class="text-orange" style="font-weight: 700; font-size: 1.2rem;">KSh 32,000</p>
+                            <a href="#" class="btn btn-primary" style="width: 100%;">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <a href="#" class="btn btn-primary" data-page="shop">View All Products</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Steps Section -->
+        <section class="section section-light">
+            <div class="container">
+                <h2 class="text-center">From Broken to Better Than Before – This Is How It Works.</h2>
+                
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/833/833593.png" alt="Book Appointment">
+                        </div>
+                        <h3>Book or Walk-In</h3>
+                        <p>Online booking or just visit us.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/681/681611.png" alt="Diagnosis">
+                        </div>
+                        <h3>Diagnosis & Quote</h3>
+                        <p>Transparent breakdown – no hidden surprises.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/1995/1995540.png" alt="Repair">
+                        </div>
+                        <h3>Repair in Progress</h3>
+                        <p>We treat your device like it's our own.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Complete">
+                        </div>
+                        <h3>Collect or Delivered</h3>
+                        <p>Repaired, tested, ready for action.</p>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <a href="#" class="btn btn-primary" id="stepsBookRepairBtn">Start My Repair Journey</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center">Real Stories From Nairobi's Happiest Device Owners</h2>
+                
+                <div class="testimonials-container">
+                    <div class="testimonial active">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"I dropped my iPhone in water and thought it was over. Allan's team revived it in just 2 hours. Absolute lifesavers."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Brenda M.">
+                            </div>
+                            <div>
+                                <h4>Brenda M.</h4>
+                                <p>Westlands, Nairobi</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"My laptop was running so slow I could barely work. GetItFixed not only fixed the performance issues but also recovered all my important files. Highly recommended!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="David K.">
+                            </div>
+                            <div>
+                                <h4>David K.</h4>
+                                <p>Kilimani, Nairobi</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brands Section -->
+        <section class="section section-light">
+            <div class="container">
+                <h2 class="text-center">We Repair All Major Brands</h2>
+                
+                <div class="brands-container">
+                    <div class="brand-logo">Apple</div>
+                    <div class="brand-logo">Samsung</div>
+                    <div class="brand-logo">Tecno</div>
+                    <div class="brand-logo">Oppo</div>
+                    <div class="brand-logo">HP</div>
+                    <div class="brand-logo">Dell</div>
+                    <div class="brand-logo">Lenovo</div>
+                    <div class="brand-logo">Asus</div>
+                    <div class="brand-logo">Infinix</div>
+                    <div class="brand-logo">Huawei</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section section-dark">
+            <div class="container text-center">
+                <h2>Don't Replace It Yet – Let's Fix It First.</h2>
+                <a href="#" class="btn btn-primary" id="ctaBookRepairBtn">Fix My Device Now</a>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center">Frequently Asked Questions</h2>
+                
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            How long does a typical repair take?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Most repairs are done within the same day. Complex issues might take 1-2 days, but we'll always keep you informed.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Do you offer warranty?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes – between 30 and 90 days depending on service. All warranties are clearly stated on your repair receipt.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Is diagnosis free?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutely. We provide free diagnosis for all devices so you know exactly what's wrong before committing to any repair.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Do you offer pickup and delivery?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes! We offer convenient pickup and delivery services within Nairobi for a small fee. Contact us to arrange this service.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Services Page -->
+    <div id="services" class="page">
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Our Repair Services</h1>
+                    <p>Expert device repairs for all your tech needs with warranty protection.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary" id="servicesBookRepairBtn">Book Repair Now</a>
+                        <a href="#" class="btn btn-secondary" data-page="contact">Contact Our Experts</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center">Comprehensive Device Repair Services</h2>
+                <p class="text-center">We specialize in fixing a wide range of devices with precision and care.</p>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-content">
+                            <div class="service-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/15/15874.png" alt="Phone Repair">
+                            </div>
+                            <h3>Smartphone Repairs</h3>
+                            <p>From screen replacements to battery issues, we fix all smartphone problems with precision and care.</p>
+                            <ul>
+                                <li>Screen & Display Repair</li>
+                                <li>Battery Replacement</li>
+                                <li>Charging Port Fix</li>
+                                <li>Water Damage Repair</li>
+                                <li>Camera & Speaker Issues</li>
+                            </ul>
+                            <p class="text-orange" style="font-weight: 600;">Starting from KSh 2,500</p>
+                            <a href="#" class="btn btn-primary get-quote-btn" data-service="Smartphone Repairs">Get Quote</a>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-content">
+                            <div class="service-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Laptop Repair">
+                            </div>
+                            <h3>Laptop Repairs</h3>
+                            <p>Comprehensive laptop repair services for all major brands with certified parts.</p>
+                            <ul>
+                                <li>Screen Replacement</li>
+                                <li>Keyboard & Trackpad Repair</li>
+                                <li>Motherboard Diagnostics</li>
+                                <li>Performance Optimization</li>
+                                <li>Data Recovery</li>
+                            </ul>
+                            <p class="text-orange" style="font-weight: 600;">Starting from KSh 3,500</p>
+                            <a href="#" class="btn btn-primary get-quote-btn" data-service="Laptop Repairs">Get Quote</a>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-content">
+                            <div class="service-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/3601/3601006.png" alt="Tablet Repair">
+                            </div>
+                            <h3>Tablet Repairs</h3>
+                            <p>Expert tablet repair services for iPads, Samsung tablets, and more with quick turnaround.</p>
+                            <ul>
+                                <li>Screen Replacement</li>
+                                <li>Battery Issues</li>
+                                <li>Software Problems</li>
+                                <li>Button & Port Repair</li>
+                                <li>Performance Tuning</li>
+                            </ul>
+                            <p class="text-orange" style="font-weight: 600;">Starting from KSh 3,000</p>
+                            <a href="#" class="btn btn-primary get-quote-btn" data-service="Tablet Repairs">Get Quote</a>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-content">
+                            <div class="service-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2933/2933245.png" alt="Gaming Console Repair">
+                            </div>
+                            <h3>Gaming Console Repairs</h3>
+                            <p>Fix your gaming consoles and get back to your games quickly with our expert service.</p>
+                            <ul>
+                                <li>PS4/PS5 Repairs</li>
+                                <li>Xbox Series Repairs</li>
+                                <li>Nintendo Switch Repairs</li>
+                                <li>Controller Repair</li>
+                                <li>Disc Drive Issues</li>
+                            </ul>
+                            <p class="text-orange" style="font-weight: 600;">Starting from KSh 4,000</p>
+                            <a href="#" class="btn btn-primary get-quote-btn" data-service="Gaming Console Repairs">Get Quote</a>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-content">
+                            <div class="service-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2889/2889676.png" alt="Data Recovery">
+                            </div>
+                            <h3>Data Recovery</h3>
+                            <p>Retrieve your important data from damaged or malfunctioning devices with our advanced recovery tools.</p>
+                            <ul>
+                                <li>Hard Drive Recovery</li>
+                                <li>SSD Data Retrieval</li>
+                                <li>Mobile Device Data Recovery</li>
+                                <li>Corrupted File Repair</li>
+                                <li>Backup Solutions</li>
+                            </ul>
+                            <p class="text-orange" style="font-weight: 600;">Starting from KSh 5,000</p>
+                            <a href="#" class="btn btn-primary get-quote-btn" data-service="Data Recovery">Get Quote</a>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-content">
+                            <div class="service-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/1995/1995540.png" alt="Custom Repair">
+                            </div>
+                            <h3>Custom Repair Solutions</h3>
+                            <p>Unique repair needs? We provide custom solutions for special cases with personalized service.</p>
+                            <ul>
+                                <li>Vintage Device Repair</li>
+                                <li>Specialized Equipment</li>
+                                <li>Business Device Solutions</li>
+                                <li>Emergency Repairs</li>
+                                <li>On-Site Service</li>
+                            </ul>
+                            <p class="text-orange" style="font-weight: 600;">Price varies by project</p>
+                            <a href="#" class="btn btn-primary get-quote-btn" data-service="Custom Repair Solutions">Get Quote</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-light">
+            <div class="container">
+                <h2 class="text-center">Why Choose Our Repair Services?</h2>
+                <div class="highlights">
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png" alt="Certified Technicians">
+                        </div>
+                        <h3>Certified Technicians</h3>
+                        <p>Our team is certified and trained to handle all major device brands with expertise.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/9296/9296856.png" alt="Warranty Protected">
+                        </div>
+                        <h3>Warranty Protected</h3>
+                        <p>All repairs come with a warranty for your peace of mind and satisfaction guarantee.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2972/2972185.png" alt="Fast Turnaround">
+                        </div>
+                        <h3>Fast Turnaround</h3>
+                        <p>Most repairs completed within 24 hours or less to minimize your downtime.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135706.png" alt="Transparent Pricing">
+                        </div>
+                        <h3>Transparent Pricing</h3>
+                        <p>No hidden fees - you'll know the cost before we begin any work on your device.</p>
+                    </div>
+                </div>
+                
+                <div class="text-center" style="margin-top: var(--space-lg);">
+                    <h3>Ready to Fix Your Device?</h3>
+                    <p>Contact us today for a free diagnosis and quote.</p>
+                    <a href="#" class="btn btn-primary" data-page="contact">Contact Us Now</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Shop Page -->
+    <div id="shop" class="page">
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Refurbished Devices</h1>
+                    <p>Quality certified devices at affordable prices with warranty protection.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary" data-page="services">Need Repairs Instead?</a>
+                        <a href="#" class="btn btn-secondary" data-page="contact">Contact for Bulk Orders</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center">Certified Refurbished Devices</h2>
+                <p class="text-center">All devices are thoroughly tested, cleaned, and come with warranty for your peace of mind.</p>
+                
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="iPhone 12 Pro">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-tag">Like New</span>
+                            <h3>iPhone 12 Pro</h3>
+                            <p>128GB, Space Gray, 90% battery health, like-new condition</p>
+                            <div class="product-specs">
+                                <p><i class="fas fa-memory"></i> 128GB Storage</p>
+                                <p><i class="fas fa-battery-three-quarters"></i> 90% Battery Health</p>
+                                <p><i class="fas fa-shield-alt"></i> 6-Month Warranty</p>
+                            </div>
+                            <p class="text-orange" style="font-weight: 700; font-size: 1.2rem;">KSh 45,000</p>
+                            <p><s>KSh 65,000</s> <span style="color: var(--success);">30% off</span></p>
+                            <a href="#" class="btn btn-primary" style="width: 100%;">Buy Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Dell XPS 13">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-tag">Hot Deal</span>
+                            <h3>Dell XPS 13</h3>
+                            <p>i5, 8GB RAM, 256GB SSD, Like-new condition with upgraded components</p>
+                            <div class="product-specs">
+                                <p><i class="fas fa-microchip"></i> Intel i5 Processor</p>
+                                <p><i class="fas fa-memory"></i> 8GB RAM / 256GB SSD</p>
+                                <p><i class="fas fa-shield-alt"></i> 12-Month Warranty</p>
+                            </div>
+                            <p class="text-orange" style="font-weight: 700; font-size: 1.2rem;">KSh 65,000</p>
+                            <p><s>KSh 85,000</s> <span style="color: var(--success);">23% off</span></p>
+                            <a href="#" class="btn btn-primary" style="width: 100%;">Buy Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Samsung Galaxy S21">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-tag">Limited Stock</span>
+                            <h3>Samsung Galaxy S21</h3>
+                            <p>128GB, Phantom Gray, New battery installed, fully tested</p>
+                            <div class="product-specs">
+                                <p><i class="fas fa-memory"></i> 128GB Storage</p>
+                                <p><i class="fas fa-battery-full"></i> New Battery</p>
+                                <p><i class="fas fa-shield-alt"></i> 6-Month Warranty</p>
+                            </div>
+                            <p class="text-orange" style="font-weight: 700; font-size: 1.2rem;">KSh 32,000</p>
+                            <p><s>KSh 45,000</s> <span style="color: var(--success);">29% off</span></p>
+                            <a href="#" class="btn btn-primary" style="width: 100%;">Buy Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="iPad Air 4">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-tag">Best Value</span>
+                            <h3>iPad Air 4</h3>
+                            <p>64GB, Space Gray, Like-new condition with original accessories</p>
+                            <div class="product-specs">
+                                <p><i class="fas fa-memory"></i> 64GB Storage</p>
+                                <p><i class="fas fa-tablet-alt"></i> 10.9" Display</p>
+                                <p><i class="fas fa-shield-alt"></i> 6-Month Warranty</p>
+                            </div>
+                            <p class="text-orange" style="font-weight: 700; font-size: 1.2rem;">KSh 38,000</p>
+                            <p><s>KSh 52,000</s> <span style="color: var(--success);">27% off</span></p>
+                            <a href="#" class="btn btn-primary" style="width: 100%;">Buy Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1587614382346-4ec70e388b28?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="HP Pavilion 15">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-tag">Student Special</span>
+                            <h3>HP Pavilion 15</h3>
+                            <p>i5, 8GB RAM, 512GB SSD, Excellent condition for students</p>
+                            <div class="product-specs">
+                                <p><i class="fas fa-microchip"></i> Intel i5 Processor</p>
+                                <p><i class="fas fa-memory"></i> 8GB RAM / 512GB SSD</p>
+                                <p><i class="fas fa-shield-alt"></i> 12-Month Warranty</p>
+                            </div>
+                            <p class="text-orange" style="font-weight: 700; font-size: 1.2rem;">KSh 42,000</p>
+                            <p><s>KSh 58,000</s> <span style="color: var(--success);">28% off</span></p>
+                            <a href="#" class="btn btn-primary" style="width: 100%;">Buy Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Tecno Camon 17">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-tag">Budget Pick</span>
+                            <h3>Tecno Camon 17</h3>
+                            <p>128GB, 6GB RAM, Like-new with warranty and original box</p>
+                            <div class="product-specs">
+                                <p><i class="fas fa-memory"></i> 128GB Storage / 6GB RAM</p>
+                                <p><i class="fas fa-camera"></i> 48MP Quad Camera</p>
+                                <p><i class="fas fa-shield-alt"></i> 6-Month Warranty</p>
+                            </div>
+                            <p class="text-orange" style="font-weight: 700; font-size: 1.2rem;">KSh 15,000</p>
+                            <p><s>KSh 22,000</s> <span style="color: var(--success);">32% off</span></p>
+                            <a href="#" class="btn btn-primary" style="width: 100%;">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-light">
+            <div class="container">
+                <h2 class="text-center">Why Buy Refurbished?</h2>
+                <div class="highlights">
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135706.png" alt="Significant Savings">
+                        </div>
+                        <h3>Significant Savings</h3>
+                        <p>Save 20-50% compared to brand new devices without compromising on quality.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/9296/9296856.png" alt="Warranty Included">
+                        </div>
+                        <h3>Warranty Included</h3>
+                        <p>All devices come with 6-12 month warranty for complete peace of mind.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/1596/1596796.png" alt="Eco-Friendly">
+                        </div>
+                        <h3>Eco-Friendly</h3>
+                        <p>Reduce electronic waste by choosing refurbished and help the environment.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Quality Tested">
+                        </div>
+                        <h3>Quality Tested</h3>
+                        <p>Every device undergoes rigorous testing to ensure it meets our high standards.</p>
+                    </div>
+                </div>
+                
+                <div class="text-center" style="margin-top: var(--space-lg);">
+                    <h3>Not Sure Which Device Is Right For You?</h3>
+                    <p>Our experts can help you choose the perfect device for your needs and budget.</p>
+                    <a href="#" class="btn btn-primary" data-page="contact">Get Personalized Advice</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page">
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>About GetItFixed</h1>
+                    <p>Our story, mission, and commitment to saving your devices.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary" data-page="services">View Our Services</a>
+                        <a href="#" class="btn btn-secondary" data-page="contact">Meet Our Team</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="about-container">
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Founder Allan at workshop">
+                    </div>
+                    <div class="about-content">
+                        <h2>Our Story</h2>
+                        <p>GetItFixed was founded in 2018 by Allan, a passionate tech enthusiast with a vision to provide affordable, reliable device repair services to the Nairobi community.</p>
+                        <p>What started as a small repair booth in Kimathi House has grown into a trusted repair center serving thousands of satisfied customers across Nairobi.</p>
+                        <p>Our mission is simple: to extend the life of your devices through quality repairs, reducing electronic waste and saving you money.</p>
+                        
+                        <h3>Our Values</h3>
+                        <div class="about-stats">
+                            <div class="stat"><i class="fas fa-hand-holding-heart"></i> Customer First</div>
+                            <div class="stat"><i class="fas fa-award"></i> Quality Workmanship</div>
+                            <div class="stat"><i class="fas fa-balance-scale"></i> Transparent Pricing</div>
+                            <div class="stat"><i class="fas fa-leaf"></i> Environmental Responsibility</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-light">
+            <div class="container">
+                <h2 class="text-center">Meet Our Team</h2>
+                <div class="highlights">
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3011/3011270.png" alt="Allan - Founder">
+                        </div>
+                        <h3>Allan</h3>
+                        <p>Founder & Lead Technician</p>
+                        <p>With over 8 years in device repair, Allan leads our technical team with expertise and passion for saving devices from premature disposal.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/4323/4323005.png" alt="Sarah - Phone Specialist">
+                        </div>
+                        <h3>Sarah</h3>
+                        <p>Phone Repair Specialist</p>
+                        <p>Sarah specializes in smartphone repairs with particular expertise in Apple and Samsung devices. She's our micro-soldering expert.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/4333/4333600.png" alt="Mike - Laptop Technician">
+                        </div>
+                        <h3>Mike</h3>
+                        <p>Laptop & Computer Technician</p>
+                        <p>James handles all our laptop and computer repairs with precision and attention to detail. He's our data recovery specialist.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/4323/4323002.png" alt="Grace - Customer Service">
+                        </div>
+                        <h3>Grace</h3>
+                        <p>Customer Service Manager</p>
+                        <p>Grace ensures every customer receives exceptional service from initial contact to repair completion. She's your go-to for updates.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center">Our Repair Philosophy</h2>
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/681/681611.png" alt="Thorough Diagnosis">
+                        </div>
+                        <h3>Thorough Diagnosis</h3>
+                        <p>We never start repairs without fully understanding the problem through comprehensive testing.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/1995/1995540.png" alt="Quality Parts">
+                        </div>
+                        <h3>Quality Parts</h3>
+                        <p>We use only high-quality, certified replacement parts to ensure longevity and performance.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Rigorous Testing">
+                        </div>
+                        <h3>Rigorous Testing</h3>
+                        <p>Every repaired device undergoes comprehensive testing to ensure it meets our quality standards.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/9296/9296856.png" alt="Warranty Protection">
+                        </div>
+                        <h3>Warranty Protection</h3>
+                        <p>We stand behind our work with solid warranty coverage for your complete peace of mind.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-dark">
+            <div class="container text-center">
+                <h2>Ready to Experience the GetItFixed Difference?</h2>
+                <p>Join thousands of satisfied customers who trust us with their device repairs.</p>
+                <a href="#" class="btn btn-primary" id="aboutBookRepairBtn">Book Your Repair Today</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Blog Page -->
+    <div id="blog" class="page">
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>GetItFixed Blog</h1>
+                    <p>Tech tips, repair insights, and device maintenance advice.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary" data-page="services">Need Repairs?</a>
+                        <a href="#" class="btn btn-secondary" data-page="contact">Ask Our Experts</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center">Latest Articles</h2>
+                <p class="text-center">Stay updated with the latest in device care and repair.</p>
+                
+                <div class="blog-grid">
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="https://images.unsplash.com/photo-1603732551681-2e91159b9dc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Phone Battery Life">
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-tag">Device Care</span>
+                            <h3>How to Extend Your Phone Battery Life</h3>
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> October 15, 2023</span>
+                                <span><i class="far fa-user"></i> Allan</span>
+                            </div>
+                            <p>Learn practical tips to make your phone battery last longer throughout the day. From adjusting screen brightness to managing background apps, we cover all the strategies to maximize your battery life.</p>
+                            <a href="#" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Water Damage">
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-tag">Emergency Tips</span>
+                            <h3>What to Do When Your Phone Gets Wet</h3>
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> October 8, 2023</span>
+                                <span><i class="far fa-user"></i> Sarah</span>
+                            </div>
+                            <p>Accidents happen! Discover the immediate steps to take when your phone encounters water to maximize chances of recovery. Learn what NOT to do and when to seek professional help.</p>
+                            <a href="#" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Laptop Repair">
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-tag">Maintenance</span>
+                            <h3>5 Signs Your Laptop Needs Professional Repair</h3>
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> October 1, 2023</span>
+                                <span><i class="far fa-user"></i> James</span>
+                            </div>
+                            <p>Is your laptop trying to tell you something? Learn the warning signs that indicate it's time to seek professional help before small issues become major problems.</p>
+                            <a href="#" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Repair vs Replace">
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-tag">DIY Tips</span>
+                            <h3>When to Repair vs. Replace Your Smartphone</h3>
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> September 24, 2023</span>
+                                <span><i class="far fa-user"></i> Allan</span>
+                            </div>
+                            <p>Facing device issues? We break down the factors to consider when deciding between repairing your current phone or buying new. Cost, age, and performance all play a role.</p>
+                            <a href="#" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Environmental Impact">
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-tag">Tech Insights</span>
+                            <h3>The Environmental Impact of Device Repair</h3>
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> September 17, 2023</span>
+                                <span><i class="far fa-user"></i> Grace</span>
+                            </div>
+                            <p>How choosing repair over replacement contributes to reducing electronic waste and conserving precious resources. Learn about the environmental benefits of extending device lifespan.</p>
+                            <a href="#" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Data Security">
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-tag">Security</span>
+                            <h3>Protecting Your Data During Device Repair</h3>
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> September 10, 2023</span>
+                                <span><i class="far fa-user"></i> James</span>
+                            </div>
+                            <p>Essential steps to secure your personal information before sending your device for repair to protect your privacy. Learn about backup strategies and data wiping options.</p>
+                            <a href="#" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-light">
+            <div class="container">
+                <h2 class="text-center">Blog Categories</h2>
+                <div class="highlights">
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/15/15874.png" alt="Phone Repair">
+                        </div>
+                        <h3>Phone Repair</h3>
+                        <p>Tips and insights for smartphone maintenance and repair.</p>
+                        <a href="#" class="btn btn-secondary">View Articles</a>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Laptop Care">
+                        </div>
+                        <h3>Laptop Care</h3>
+                        <p>Expert advice for keeping your laptop in top condition.</p>
+                        <a href="#" class="btn btn-secondary">View Articles</a>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3601/3601006.png" alt="Tablet Solutions">
+                        </div>
+                        <h3>Tablet Solutions</h3>
+                        <p>Guidance for tablet users on maintenance and troubleshooting.</p>
+                        <a href="#" class="btn btn-secondary">View Articles</a>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/1995/1995540.png" alt="DIY Tips">
+                        </div>
+                        <h3>DIY Tips</h3>
+                        <p>Safe and effective do-it-yourself repair techniques.</p>
+                        <a href="#" class="btn btn-secondary">View Articles</a>
+                    </div>
+                </div>
+                
+                <div class="text-center" style="margin-top: var(--space-lg);">
+                    <h3>Have a Tech Question?</h3>
+                    <p>Our experts are here to help with any device-related questions you may have.</p>
+                    <a href="#" class="btn btn-primary" data-page="contact">Ask Our Experts</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page">
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Contact Us</h1>
+                    <p>Get in touch for repairs, quotes, or any questions about our services.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary" id="contactBookRepairBtn">Book Repair Now</a>
+                        <a href="#" class="btn btn-secondary" data-page="services">View Services</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h2>Get In Touch</h2>
+                        <p>We're here to help with all your device repair needs. Reach out through any of these channels:</p>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h3>Location</h3>
+                                <p>Kimathi House, Kimathi Street<br>00100, Nairobi, Kenya</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h3>Phone</h3>
+                                <p>+254 728 364 858</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h3>WhatsApp</h3>
+                                <p>+254 728 364 858</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h3>Email</h3>
+                                <p>info@getitfixed.co.ke</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h3>Business Hours</h3>
+                                <p>Mon - Fri: 8:00 AM - 7:00 PM<br>Sat: 9:00 AM - 5:00 PM<br>Sun: 10:00 AM - 3:00 PM</p>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <h2>Request a Repair</h2>
+                        <form id="repairForm">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" class="form-control" placeholder="Your name" required>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" class="form-control" placeholder="Your email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone" class="form-control" placeholder="Your phone number" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="device">Device Type</label>
+                                <select id="device" class="form-control" required>
+                                    <option value="">Select your device</option>
+                                    <option value="phone">Phone</option>
+                                    <option value="laptop">Laptop</option>
+                                    <option value="tablet">Tablet</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="brand">Device Brand</label>
+                                <input type="text" id="brand" class="form-control" placeholder="e.g., Apple, Samsung, Dell" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="model">Device Model</label>
+                                <input type="text" id="model" class="form-control" placeholder="e.g., iPhone 12, Galaxy S21, XPS 13" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="issue">Describe the Issue</label>
+                                <textarea id="issue" class="form-control" rows="4" placeholder="Please describe what's wrong with your device" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contact">Preferred Contact Method</label>
+                                <select id="contact" class="form-control">
+                                    <option value="">Select contact method</option>
+                                    <option value="phone">Phone Call</option>
+                                    <option value="whatsapp">WhatsApp</option>
+                                    <option value="email">Email</option>
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Request a Repair</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-light">
+            <div class="container">
+                <h2 class="text-center">Find Us</h2>
+                <div style="background: var(--mid-gray); height: 300px; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                    <p style="color: var(--surface); font-size: 1.2rem;"><i class="fas fa-map-marker-alt"></i> Google Maps Embed - Kimathi House, Nairobi</p>
+                </div>
+                
+                <div class="text-center" style="margin-top: var(--space-lg);">
+                    <h3>Not Sure What's Wrong With Your Device?</h3>
+                    <p>Bring it in for a free diagnosis. Our experts will identify the issue and provide a transparent quote.</p>
+                    <a href="#" class="btn btn-primary" data-page="services">Learn About Our Services</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Book Repair Modal -->
+    <div class="modal" id="bookRepairModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Book Your Repair</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="modal-form" id="bookRepairForm">
+                    <div class="form-group">
+                        <label for="customerName">Full Name</label>
+                        <input type="text" id="customerName" class="form-control" placeholder="Your full name" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="customerEmail">Email</label>
+                            <input type="email" id="customerEmail" class="form-control" placeholder="Your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerPhone">Phone Number</label>
+                            <input type="tel" id="customerPhone" class="form-control" placeholder="Your phone number" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Select Your Device Type</label>
+                        <div class="device-options">
+                            <div class="device-option" data-device="phone">
+                                <img src="https://cdn-icons-png.flaticon.com/512/15/15874.png" alt="Phone">
+                                <p>Phone</p>
+                            </div>
+                            <div class="device-option" data-device="laptop">
+                                <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Laptop">
+                                <p>Laptop</p>
+                            </div>
+                            <div class="device-option" data-device="tablet">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2311/2311905.png" alt="Tablet">
+                                <p>Tablet</p>
+                            </div>
+                        </div>
+                        <input type="hidden" id="selectedDevice" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="deviceBrand">Device Brand</label>
+                        <input type="text" id="deviceBrand" class="form-control" placeholder="e.g., Apple, Samsung, Dell" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="deviceModel">Device Model</label>
+                        <input type="text" id="deviceModel" class="form-control" placeholder="e.g., iPhone 12, Galaxy S21, XPS 13" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="repairIssue">Describe the Issue</label>
+                        <textarea id="repairIssue" class="form-control" rows="4" placeholder="Please describe what's wrong with your device" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="preferredDate">Preferred Date</label>
+                        <input type="date" id="preferredDate" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="preferredTime">Preferred Time</label>
+                        <select id="preferredTime" class="form-control" required>
+                            <option value="">Select a time</option>
+                            <option value="morning">Morning (9 AM - 12 PM)</option>
+                            <option value="afternoon">Afternoon (12 PM - 4 PM)</option>
+                            <option value="evening">Evening (4 PM - 7 PM)</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Book My Repair</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Get Quote Modal -->
+    <div class="modal" id="getQuoteModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Get a Repair Quote</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="modal-form" id="getQuoteForm">
+                    <div class="form-group">
+                        <label for="quoteName">Full Name</label>
+                        <input type="text" id="quoteName" class="form-control" placeholder="Your full name" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="quoteEmail">Email</label>
+                            <input type="email" id="quoteEmail" class="form-control" placeholder="Your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="quotePhone">Phone Number</label>
+                            <input type="tel" id="quotePhone" class="form-control" placeholder="Your phone number" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quoteService">Service Needed</label>
+                        <input type="text" id="quoteService" class="form-control" readonly>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Select Your Device Type</label>
+                        <div class="device-options">
+                            <div class="device-option" data-device="phone">
+                                <img src="https://cdn-icons-png.flaticon.com/512/15/15874.png" alt="Phone">
+                                <p>Phone</p>
+                            </div>
+                            <div class="device-option" data-device="laptop">
+                                <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Laptop">
+                                <p>Laptop</p>
+                            </div>
+                            <div class="device-option" data-device="tablet">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2311/2311905.png" alt="Tablet">
+                                <p>Tablet</p>
+                            </div>
+                        </div>
+                        <input type="hidden" id="quoteDevice" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quoteBrand">Device Brand</label>
+                        <input type="text" id="quoteBrand" class="form-control" placeholder="e.g., Apple, Samsung, Dell" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quoteModel">Device Model</label>
+                        <input type="text" id="quoteModel" class="form-control" placeholder="e.g., iPhone 12, Galaxy S21, XPS 13" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quoteIssue">Describe the Issue</label>
+                        <textarea id="quoteIssue" class="form-control" rows="4" placeholder="Please describe what's wrong with your device" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Get My Quote</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>GetItFixed</h3>
+                    <p>We save devices. Founded by Allan – Serving Nairobi, one fix at a time.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Pages</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-page="home">Home</a></li>
+                        <li><a href="#" data-page="services">Repairs</a></li>
+                        <li><a href="#" data-page="shop">Shop</a></li>
+                        <li><a href="#" data-page="about">About</a></li>
+                        <li><a href="#" data-page="blog">Blog</a></li>
+                        <li><a href="#" data-page="contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Kimathi House, Nairobi</li>
+                        <li><i class="fas fa-phone"></i> +254 728 364 858</li>
+                        <li><i class="fab fa-whatsapp"></i> +254 728 364 858</li>
+                        <li><i class="fas fa-envelope"></i> info@getitfixed.co.ke</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Business Hours</h3>
+                    <ul class="footer-links">
+                        <li>Mon - Fri: 8:00 AM - 7:00 PM</li>
+                        <li>Sat: 9:00 AM - 5:00 PM</li>
+                        <li>Sun: 10:00 AM - 3:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 GetItFixed. All rights reserved. | Designed by WebWise Solutions.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/254700123456" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Page Navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const pages = document.querySelectorAll('.page');
+            const navLinks = document.querySelectorAll('nav a, .footer-links a');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navMenu = document.getElementById('navMenu');
+            
+            // Modals
+            const bookRepairModal = document.getElementById('bookRepairModal');
+            const getQuoteModal = document.getElementById('getQuoteModal');
+            const closeModalButtons = document.querySelectorAll('.close-modal');
+            
+            // Book Repair Buttons
+            const bookRepairBtns = document.querySelectorAll('#bookRepairBtn, #heroBookRepairBtn, #stepsBookRepairBtn, #ctaBookRepairBtn, #servicesBookRepairBtn, #aboutBookRepairBtn, #contactBookRepairBtn');
+            
+            // Get Quote Buttons
+            const getQuoteBtns = document.querySelectorAll('.get-quote-btn');
+            
+            // Device Options
+            const deviceOptions = document.querySelectorAll('.device-option');
+            
+            // Function to show a specific page
+            function showPage(pageId) {
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                document.getElementById(pageId).classList.add('active');
+                
+                // Update active nav link
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-page') === pageId) {
+                        link.classList.add('active');
+                    }
+                });
+                
+                // Close mobile menu
+                navMenu.classList.remove('active');
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            }
+            
+            // Function to open modal
+            function openModal(modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            // Function to close modal
+            function closeModal(modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+            
+            // Add click event to all navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    if (pageId) {
+                        showPage(pageId);
+                    }
+                });
+            });
+            
+            // Mobile Menu Toggle
+            mobileMenuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+            
+            // Header Scroll Effect
+            const header = document.getElementById('header');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Book Repair Button Click
+            bookRepairBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openModal(bookRepairModal);
+                });
+            });
+            
+            // Get Quote Button Click
+            getQuoteBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const service = this.getAttribute('data-service');
+                    document.getElementById('quoteService').value = service;
+                    openModal(getQuoteModal);
+                });
+            });
+            
+            // Close Modal Buttons
+            closeModalButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const modal = this.closest('.modal');
+                    closeModal(modal);
+                });
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(e) {
+                if (e.target.classList.contains('modal')) {
+                    closeModal(e.target);
+                }
+            });
+            
+            // Device Option Selection
+            deviceOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected class from all options in the same container
+                    const container = this.closest('.device-options');
+                    container.querySelectorAll('.device-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                    
+                    // Set the hidden input value
+                    const deviceType = this.getAttribute('data-device');
+                    const form = this.closest('form');
+                    const hiddenInput = form.querySelector('input[type="hidden"]');
+                    hiddenInput.value = deviceType;
+                });
+            });
+            
+            // Form Submissions
+            const bookRepairForm = document.getElementById('bookRepairForm');
+            const getQuoteForm = document.getElementById('getQuoteForm');
+            const contactForm = document.getElementById('repairForm');
+            
+            if (bookRepairForm) {
+                bookRepairForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for booking your repair! We will contact you shortly to confirm your appointment.');
+                    this.reset();
+                    closeModal(bookRepairModal);
+                });
+            }
+            
+            if (getQuoteForm) {
+                getQuoteForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your quote request! We will analyze your device issue and get back to you with a detailed quote within 2 hours.');
+                    this.reset();
+                    closeModal(getQuoteModal);
+                });
+            }
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your repair request! We will contact you shortly to discuss your device issue.');
+                    this.reset();
+                });
+            }
+            
+            // FAQ Accordion
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements that should animate on scroll
+            document.querySelectorAll('.service-card, .highlight-card, .product-card, .testimonial, .blog-card').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
